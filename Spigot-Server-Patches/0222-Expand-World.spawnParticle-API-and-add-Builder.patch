@@ -1,4 +1,4 @@
-From 3d5c1c4a2c091d1c649e9c7756ecc8b7942b1d28 Mon Sep 17 00:00:00 2001
+From df81ea15793dde7a234a4e8941be57a3bab1d646 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 15 Aug 2017 22:29:12 -0400
 Subject: [PATCH] Expand World.spawnParticle API and add Builder
@@ -10,10 +10,10 @@ Adds an option to control the force mode of the particle.
 This adds a new Builder API which is much friendlier to use.
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 594401c39..cbabe7743 100644
+index 491c9c9170..b9015cb8a7 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
-@@ -52,7 +52,7 @@ public class WorldServer extends World {
+@@ -53,7 +53,7 @@ public class WorldServer extends World {
      public final Int2ObjectMap<Entity> entitiesById = new Int2ObjectLinkedOpenHashMap();
      private final Map<UUID, Entity> entitiesByUUID = Maps.newHashMap();
      private final Queue<Entity> entitiesToAdd = Queues.newArrayDeque();
@@ -22,7 +22,7 @@ index 594401c39..cbabe7743 100644
      boolean tickingEntities;
      private final MinecraftServer server;
      private final WorldNBTStorage dataManager;
-@@ -1348,12 +1348,17 @@ public class WorldServer extends World {
+@@ -1382,12 +1382,17 @@ public class WorldServer extends World {
      }
  
      public <T extends ParticleParam> int sendParticles(EntityPlayer sender, T t0, double d0, double d1, double d2, int i, double d3, double d4, double d5, double d6, boolean force) {
@@ -43,10 +43,10 @@ index 594401c39..cbabe7743 100644
  
              if (this.a(entityplayer, force, d0, d1, d2, packetplayoutworldparticles)) { // CraftBukkit
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 75f5e752c..a0c5f7f91 100644
+index 0e4f4cda0b..3726f240ce 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -2177,11 +2177,17 @@ public class CraftWorld implements World {
+@@ -2199,11 +2199,17 @@ public class CraftWorld implements World {
  
      @Override
      public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data, boolean force) {
@@ -66,5 +66,5 @@ index 75f5e752c..a0c5f7f91 100644
                  x, y, z, // Position
                  count,  // Count
 -- 
-2.23.0
+2.22.1
 

@@ -1,4 +1,4 @@
-From 92d718d2cc5efcad7c1d148a44a3e1869ef20fd0 Mon Sep 17 00:00:00 2001
+From 8566c6907149379db72cac436dc270dc320039e0 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Sat, 27 Jan 2018 17:04:14 -0500
 Subject: [PATCH] Add ArmorStand Item Meta
@@ -267,23 +267,15 @@ index f700522840..3723faccac 100644
 +    // Paper end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
-index 084c958899..195b2e8f9a 100644
+index 479a5686aa..6a6b80b5bd 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
-@@ -162,6 +162,7 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
-                     .put(CraftMetaKnowledgeBook.class, "KNOWLEDGE_BOOK")
-                     .put(CraftMetaTropicalFishBucket.class, "TROPICAL_FISH_BUCKET")
-                     .put(CraftMetaCrossbow.class, "CROSSBOW")
-+                    .put(CraftMetaArmorStand.class, "ARMOR_STAND")
-                     .put(CraftMetaItem.class, "UNSPECIFIC")
-                     .build();
- 
-@@ -1424,7 +1425,15 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
-                         CraftMetaKnowledgeBook.BOOK_RECIPES.NBT,
+@@ -1428,7 +1428,15 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
                          CraftMetaTropicalFishBucket.VARIANT.NBT,
                          CraftMetaCrossbow.CHARGED.NBT,
--                        CraftMetaCrossbow.CHARGED_PROJECTILES.NBT
-+                        CraftMetaCrossbow.CHARGED_PROJECTILES.NBT,
+                         CraftMetaCrossbow.CHARGED_PROJECTILES.NBT,
+-                        CraftMetaSuspiciousStew.EFFECTS.NBT
++                        CraftMetaSuspiciousStew.EFFECTS.NBT,
 +                        // Paper start
 +                        CraftMetaArmorStand.ENTITY_TAG.NBT,
 +                        CraftMetaArmorStand.INVISIBLE.NBT,
@@ -296,7 +288,7 @@ index 084c958899..195b2e8f9a 100644
              }
              return HANDLED_TAGS;
 diff --git a/src/test/java/org/bukkit/craftbukkit/inventory/ItemMetaTest.java b/src/test/java/org/bukkit/craftbukkit/inventory/ItemMetaTest.java
-index dd4ba38743..48c5e06215 100644
+index b07a3051ca..919f2ffa91 100644
 --- a/src/test/java/org/bukkit/craftbukkit/inventory/ItemMetaTest.java
 +++ b/src/test/java/org/bukkit/craftbukkit/inventory/ItemMetaTest.java
 @@ -6,6 +6,7 @@ import java.util.ArrayList;
@@ -316,5 +308,5 @@ index dd4ba38743..48c5e06215 100644
                      return cleanStack;
                  }
 -- 
-2.22.0
+2.23.0
 

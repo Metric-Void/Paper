@@ -1,14 +1,14 @@
-From e67da0dbb682fc754406f55ee184f670219f84c8 Mon Sep 17 00:00:00 2001
+From 14201322b20e2e04e8cd67161dae08b5527b4606 Mon Sep 17 00:00:00 2001
 From: Trigary <trigary0@gmail.com>
 Date: Fri, 14 Sep 2018 17:42:08 +0200
 Subject: [PATCH] Limit lightning strike effect distance
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
-index 7e031d18e..63f313a92 100644
+index 4a4e9d715..3b24fbdbf 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
-@@ -234,6 +234,28 @@ public class PaperWorldConfig {
+@@ -239,6 +239,28 @@ public class PaperWorldConfig {
              skeleHorseSpawnChance = 0.01D; // Vanilla value
          }
      }
@@ -69,10 +69,10 @@ index 2ceee79cf..27bf271bb 100644
  
          --this.lifeTicks;
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 55d469e37..62f9a068f 100644
+index 8b55879c6..dbd357f1a 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
-@@ -1217,7 +1217,7 @@ public class WorldServer extends World {
+@@ -1251,7 +1251,7 @@ public class WorldServer extends World {
          }
          // CraftBukkit end
          this.globalEntityList.add(entitylightning);

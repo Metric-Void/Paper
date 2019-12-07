@@ -1,4 +1,4 @@
-From 11a05d88ac3b775120ee4c8319d2c249400e45f2 Mon Sep 17 00:00:00 2001
+From a6322d454a796a41b41c58f049dcbcda5ace0fcf Mon Sep 17 00:00:00 2001
 From: Phoenix616 <mail@moep.tv>
 Date: Tue, 21 Aug 2018 01:39:35 +0100
 Subject: [PATCH] Improve death events
@@ -47,10 +47,10 @@ index 7811beb807..f9b097fd6f 100644
  
      protected void i(double d0, double d1, double d2) {
 diff --git a/src/main/java/net/minecraft/server/EntityArmorStand.java b/src/main/java/net/minecraft/server/EntityArmorStand.java
-index 627925e3ba..e516db2701 100644
+index 85fc48371d..02595cfccd 100644
 --- a/src/main/java/net/minecraft/server/EntityArmorStand.java
 +++ b/src/main/java/net/minecraft/server/EntityArmorStand.java
-@@ -683,7 +683,8 @@ public class EntityArmorStand extends EntityLiving {
+@@ -690,7 +690,8 @@ public class EntityArmorStand extends EntityLiving {
  
      @Override
      public void killEntity() {
@@ -61,7 +61,7 @@ index 627925e3ba..e516db2701 100644
      }
  
 diff --git a/src/main/java/net/minecraft/server/EntityFox.java b/src/main/java/net/minecraft/server/EntityFox.java
-index 85231309fd..1da2f013fc 100644
+index e22e99df38..ca38ccf768 100644
 --- a/src/main/java/net/minecraft/server/EntityFox.java
 +++ b/src/main/java/net/minecraft/server/EntityFox.java
 @@ -597,15 +597,25 @@ public class EntityFox extends EntityAnimal {
@@ -273,7 +273,7 @@ index b09712ca91..1e53af2cce 100644
          return this.isBaby() ? (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.5F : (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F;
      }
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index dcd48d8b3d..d7bc6e3297 100644
+index 7e37164c0e..1b35e6c478 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -75,6 +75,10 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
@@ -372,10 +372,10 @@ index 2c99a1e9df..e9458dc65f 100644
  
      public void injectScaledMaxHealth(Collection<AttributeInstance> collection, boolean force) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
-index 5309a4e304..4074100c44 100644
+index 84c292168e..dc15703fd4 100644
 --- a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 +++ b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
-@@ -736,9 +736,16 @@ public class CraftEventFactory {
+@@ -745,9 +745,16 @@ public class CraftEventFactory {
      public static EntityDeathEvent callEntityDeathEvent(EntityLiving victim, List<org.bukkit.inventory.ItemStack> drops) {
          CraftLivingEntity entity = (CraftLivingEntity) victim.getBukkitEntity();
          EntityDeathEvent event = new EntityDeathEvent(entity, drops, victim.getExpReward());
@@ -392,7 +392,7 @@ index 5309a4e304..4074100c44 100644
          victim.expToDrop = event.getDroppedExp();
  
          for (org.bukkit.inventory.ItemStack stack : event.getDrops()) {
-@@ -754,8 +761,15 @@ public class CraftEventFactory {
+@@ -763,8 +770,15 @@ public class CraftEventFactory {
          CraftPlayer entity = victim.getBukkitEntity();
          PlayerDeathEvent event = new PlayerDeathEvent(entity, drops, victim.getExpReward(), 0, deathMessage);
          event.setKeepInventory(keepInventory);
@@ -408,7 +408,7 @@ index 5309a4e304..4074100c44 100644
  
          victim.keepLevel = event.getKeepLevel();
          victim.newLevel = event.getNewLevel();
-@@ -772,6 +786,31 @@ public class CraftEventFactory {
+@@ -781,6 +795,31 @@ public class CraftEventFactory {
          return event;
      }
  
@@ -441,5 +441,5 @@ index 5309a4e304..4074100c44 100644
       * Server methods
       */
 -- 
-2.22.0
+2.23.0
 
